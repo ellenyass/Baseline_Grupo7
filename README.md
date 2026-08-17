@@ -82,6 +82,42 @@ ambiente.
 <!-- Tales preenche -->
 
 ## Desafio 4 — Nova Baseline v1.1
+# Baseline v1.1 — Sistema de Pedidos
+
+## Identificação
+
+* **Baseline:** v1.1
+* **Baseline anterior:** v1.0
+* **Data de criação:** 17/08/2026
+* **Responsável pela aprovação:** Grupo 7 — Gabriel, Ellen e Tales
+
+## Objetivo da Baseline
+
+Registrar o novo estado oficial, estável e aprovado do Sistema de Pedidos após a implementação e validação da mudança solicitada pela RFC-001, estabelecendo uma nova referência para o controle de configurações e mudanças futuras.
+
+## Itens de Configuração (ICs)
+
+| IC             | Configuração                              |
+| -------------- | ----------------------------------------- |
+| Sistema        | Sistema de Pedidos — Versão 1.1           |
+| Aplicação      | Node.js 22; Express 5.1; Porta 3000       |
+| Banco de Dados | **MySQL 9.0; Banco: pedidos; Porta 3306** |
+| Infraestrutura | Ubuntu Server 24.04; 4 GB RAM; 2 vCPUs    |
+| Código-fonte   | Branch: main; Commit: abc123              |
+
+## Evolução da Configuração
+
+* **Baseline anterior:** v1.0
+* **Mudança aprovada:** MySQL 8.4 → MySQL 9.0
+* **RFC relacionada:** RFC-001
+* **Resultado:** Mudança implementada e testada com sucesso
+* **Nova baseline:** v1.1
+
+## Observação
+
+Esta baseline representa o novo conjunto completo e aprovado dos Itens de Configuração após a mudança controlada. A única alteração em relação à baseline v1.0 foi a atualização do Banco de Dados de MySQL 8.4 para MySQL 9.0. Os demais ICs permanecem inalterados.
+
+A baseline v1.0 permanece como registro histórico do estado anterior, garantindo a rastreabilidade da evolução da configuração do sistema.
 
 <!-- Ellen preenche -->
 
@@ -105,5 +141,8 @@ não "resolve" o risco de drift, apenas reinicia o ponto de referência contra
 o qual futuras divergências serão medidas.
 
 ## Pergunta final
+
+A baseline é importante porque estabelece um estado oficial, estável e aprovado do sistema, servindo como referência para a equipe. Ela garante rastreabilidade, facilita o controle de mudanças e permite identificar diferenças entre o estado esperado e o estado real do ambiente. Sem controle de configuração, alterações podem causar incompatibilidades, falhas, perda de estabilidade e **Configuration Drift**, dificultando também a identificação da causa dos problemas e a recuperação do sistema.
+
 
 <!-- Ellen preenche -->
