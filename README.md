@@ -25,7 +25,7 @@ atualização correspondente na documentação da baseline.
 **3. Essa alteração deveria ter sido realizada diretamente em produção?**
 Não. Mudanças em ICs críticos, como o banco de dados, não devem ser aplicadas
 diretamente em produção sem antes passar por um processo formal de avaliação,
-testes e aprovação, justamente pelo risco de incompatibilidades — como os erros
+testes e aprovação, justamente pelo risco de incompatibilidades, como os erros
 de consulta que passaram a ocorrer após a atualização.
 
 **4. Qual processo deveria ter sido executado antes da alteração?**
@@ -36,8 +36,7 @@ testar em ambiente controlado e só então aprovar a ida para produção.
 
 **5. O que deve acontecer com a baseline após uma mudança aprovada?**
 Após uma mudança formalmente aprovada, testada e validada, uma **nova baseline**
-deve ser criada (neste caso, a v1.1), refletindo o novo estado oficial do
-sistema — agora com MySQL 9.0 — e tornando-se a nova referência de conformidade.
+deve ser criada (neste caso, a v1.1), refletindo o novo estado oficial do sistema agora com MySQL 9.0 e tornando-se a nova referência de conformidade.
 
 ## Configuration Drift no incidente
 
@@ -88,7 +87,22 @@ ambiente.
 
 ## Desafio 5 — Configuration Drift (tabela)
 
-<!-- Gabriel preenche -->
+## Desafio 5 — Configuration Drift
+
+| Situação | É mudança controlada? | Está na baseline? |
+|---|---|---|
+| Desenvolvedor altera o código e realiza um novo commit | Sim, desde que siga o fluxo de revisão (PR/code review) | Só se o commit for formalmente incorporado a uma nova baseline aprovada |
+| Administrador altera manualmente uma configuração em produção | Não, pois não passou por RFC, avaliação de impacto ou testes | Não — representa um desvio (drift) em relação ao estado oficial documentado |
+| Mudança aprovada e documentada gera a baseline v1.1 | Sim, ja que seguiu o fluxo completo de controle de mudanças | Sim, este é o próprio processo de criação de uma nova baseline |
+
+### E se alguém alterar o servidor manualmente depois da v1.1?
+
+O mesmo problema se repetiria: o ambiente voltaria a divergir do estado
+documentado, agora em relação à baseline v1.1. Isso mostra que Configuration
+Drift não é um evento isolado, é um risco permanente sempre que existe a
+possibilidade de alterar produção fora do processo formal. Cada baseline nova
+não "resolve" o risco de drift, apenas reinicia o ponto de referência contra
+o qual futuras divergências serão medidas.
 
 ## Pergunta final
 
