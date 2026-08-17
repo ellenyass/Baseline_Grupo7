@@ -3,7 +3,7 @@
 ## Identificação
 - **Baseline:** v1.0
 - **Data de criação:** 17/08/2026
-- **Responsável pela aprovação:** Grupo 7 — Gabriel e Ellen
+- **Responsável pela aprovação:** Grupo 7 — Gabriel, Ellen e Tales
 
 ## Objetivo da Baseline
 Registrar o estado oficial, estável e aprovado do Sistema de Pedidos após validação
