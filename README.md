@@ -41,7 +41,42 @@ sistema — agora com MySQL 9.0 — e tornando-se a nova referência de conformi
 
 ## Configuration Drift no incidente
 
-<!-- Gabriel preenche -->
+A atualização do MySQL 8.4 para 9.0 diretamente em produção, sem passar pelo
+processo de controle de mudanças, gerou um caso de **Configuration Drift**: o
+ambiente real passou a divergir do estado documentado na baseline v1.0.
+
+- **Estado esperado (baseline v1.0):** MySQL 8.4
+- **Estado real (produção):** MySQL 9.0
+
+### Por que essa divergência causou erros
+
+Upgrades de versão major em bancos de dados frequentemente trazem mudanças de
+comportamento padrão, deprecação de sintaxe antiga e alterações na forma como
+o driver de conexão da aplicação se comunica com o banco. Como a aplicação
+Node.js/Express foi desenvolvida e testada assumindo o comportamento do MySQL
+8.4, qualquer uma dessas mudanças pode gerar falhas em consultas específicas —
+o que explica por que os erros apareceram em "algumas consultas", e não em
+todas: o drift raramente quebra o sistema por completo de forma imediata, ele
+degrada de forma parcial e imprevisível até que o ponto de incompatibilidade
+seja exercitado.
+
+### Por que isso é um risco mesmo além do banco
+
+O impacto do drift não se limita à instabilidade técnica. A partir do momento
+em que o ambiente real diverge da baseline documentada, a própria baseline
+deixa de ser confiável como fonte de verdade: qualquer pessoa que consultar
+`BASELINE-v1.0.md` para investigar um problema, treinar alguém novo no time
+ou planejar uma mudança futura estará partindo de uma informação desatualizada.
+O drift, portanto, não compromete apenas o item de configuração alterado — ele
+corrói a confiabilidade de toda a documentação de configuração do sistema.
+
+### Como o drift é resolvido
+
+O drift permanece até que uma das duas coisas aconteça: (a) o ambiente seja
+revertido para bater com a baseline v1.0, ou (b) a mudança seja formalizada
+através de uma RFC e uma nova baseline (v1.1) seja criada para refletir o
+novo estado real como oficial — restaurando a coerência entre documentação e
+ambiente.
 
 ## Desafio 3 — RFC
 
